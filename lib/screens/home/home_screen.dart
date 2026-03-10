@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/task_provider.dart';
 import 'add_edit_task_screen.dart';
@@ -192,6 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Text(
                                     task.title,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -215,6 +218,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ],
+                                  const SizedBox(height: 6),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.access_time,
+                                        size: 14,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Flexible(
+                                        child: Text(
+                                          DateFormat(
+                                            'MMM dd, yyyy • hh:mm a',
+                                          ).format(task.createdAt),
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 12,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),

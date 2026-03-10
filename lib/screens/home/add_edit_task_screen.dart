@@ -80,6 +80,7 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
         ),
       ),
       body: Container(
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -87,7 +88,7 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
             colors: [Color(0xFF13131A), Color(0xFF1E1E2C)],
           ),
         ),
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Form(
             key: _formKey,
@@ -136,7 +137,7 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
                   ),
                   maxLines: 4,
                 ),
-                const Spacer(),
+                const SizedBox(height: 48),
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : _saveTask,
                   icon: _isLoading
