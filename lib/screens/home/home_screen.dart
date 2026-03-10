@@ -218,18 +218,45 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.edit_note),
-                              color: const Color(0xFF6C63FF),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) =>
-                                        AddEditTaskScreen(task: task),
-                                  ),
-                                );
-                              },
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.edit_note),
+                                  color: const Color(0xFF6C63FF),
+                                  tooltip: 'Edit Task',
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            AddEditTaskScreen(task: task),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete_outline),
+                                  color: Colors.red.shade400,
+                                  tooltip: 'Delete Task',
+                                  onPressed: () {
+                                    if (user != null) {
+                                      taskProvider.deleteTask(
+                                        user.uid,
+                                        task.id,
+                                      );
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Task deleted'),
+                                          behavior: SnackBarBehavior.floating,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
